@@ -1,0 +1,24 @@
+nginx2:
+    build: ./nginx
+    links:
+        - node2:node2
+    ports:
+        - "80:80"
+node2:
+     build: ./testPlay
+     links:
+        - redis
+        - mongo
+     ports:
+         - "9000"
+     tty: true
+redis:
+    image: redis
+    ports:
+        - "6379"
+mongo:
+     image: mongo
+     ports: 
+          - "27017"
+     volumes:
+          - /srv/docker/mongo:/data/db
