@@ -56,6 +56,7 @@ public class HomeController extends Controller {
                x = Integer.parseInt(jedis.get("count"));}
                else{
                    x = 0;
+		   jedis.set("count","0");
                }
                BasicDBObject doc = new BasicDBObject("Count",++x);
 
